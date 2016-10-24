@@ -18,6 +18,9 @@ function call_onprem_server(response) {
 
     hcreq.on('error', function(error) {
         console.log(error.message);
+        response.writeHead(200, {'Content-type': 'text-plain'});
+        response.write(error);
+        response.end();
     });
 }
 
