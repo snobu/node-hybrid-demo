@@ -6,7 +6,7 @@ function call_onprem_server(response) {
     console.log('Making outbound request');
     var hcreq = http.get('http://hybridconnmgr', function (hcres) {
         response.writeHead(200, {'Content-type': 'text-plain'});
-        response.write(hcres);
+        response.write(hcres.toString());
         response.end();
         console.log(hcres);
     });
