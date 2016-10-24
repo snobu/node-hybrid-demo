@@ -1,8 +1,10 @@
 var http = require('http');
 
+// FQDN hybridconnmgr.hybridConnMgr.f6.internal.cloudapp.net
+
 function call_onprem_server(response) {
     console.log('Making outbound request');
-    var hcreq = http.get('http://hybridconnmgr.hybridConnMgr.f6.internal.cloudapp.net', function (hcres) {
+    var hcreq = http.get('http://hybridconnmgr', function (hcres) {
         response.writeHead(200, {'Content-type': 'text-plain'});
         response.write(hcres);
         response.end();
