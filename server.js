@@ -9,6 +9,13 @@ function call_onprem_server(response) {
         console.log(hcres);
     });
 
+    hcreq.setTimeout(7000, function () {
+        console.log('Timeout hit');
+        response.writeHead(200, {'Content-type': 'text-plain'});
+        response.write('Unable to connect to remote server. Timeout hit.');
+        response.end();
+    });
+
     hcreq.on('error', function(error) {
         console.log(error.message);
     });
