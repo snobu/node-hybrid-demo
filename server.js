@@ -1,21 +1,17 @@
 var http = require('http');
 
 function call_onprem_server(response) {
-    try {
-        console.log('Making outbound request');
-        http.get('http://hybridconnmgr.hybridConnMgr.f6.internal.cloudapp.net', function (hcres) {
-            response.writeHead(200, {'Content-type': 'text-plain'});
-            response.write(hcres);
-            response.end();
-            console.log(hcres);
-        });
-    }
-    catch (error) {
+    console.log('Making outbound request');
+    var hcreq = http.get('http://hybridconnmgr.hybridConnMgr.f6.internal.cloudapp.net', function (hcres) {
         response.writeHead(200, {'Content-type': 'text-plain'});
-        response.write(error);
+        response.write(hcres);
         response.end();
-        console.log(error);
-    }
+        console.log(hcres);
+    });
+
+    hcreq.on('error', function(error) {
+        console.log(error.message);
+    });
 }
 
 function onRequest(request, response) {
